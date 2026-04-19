@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #fafaf9;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f5f5f4;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-tertiary: #a8a29e;
+  --accent: #b45309;
+  --accent-light: #fef3c7;
+  --border: #e7e5e4;
+  --border-strong: #d6d3d1;
+  --blue: #1e40af;
+  --blue-light: #dbeafe;
+  --green: #15803d;
+  --green-light: #dcfce7;
+  --red: #b91c1c;
+  --red-light: #fee2e2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Serif for headings - editorial feel */
+h1, h2, h3, .font-serif {
+  font-family: 'Noto Serif KR', 'Apple SD Gothic Neo', serif;
+}
+
+/* Mono for data */
+.font-mono-data {
+  font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-tertiary) 25%, #eae8e6 50%, var(--bg-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Print styles */
+@media print {
+  nav, .no-print { display: none !important; }
+  body { background: white; }
+}
