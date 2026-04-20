@@ -208,7 +208,7 @@ export default function Home() {
                   <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
                     <div className="min-w-0">
                       <ResponsiveContainer width="100%" height={280} className="min-w-0">
-                        <AreaChart data={a.monthlyTrend} margin={{ top: 5, right: 5, left: -10, bottom: 0 }}>
+                        <AreaChart data={a.monthlyTrend} margin={{ top: 10, right: 5, left: -10, bottom: 5 }}>
                           <defs>
                             <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
                               <stop offset="5%" stopColor="#b45309" stopOpacity={0.12} />
@@ -249,7 +249,7 @@ export default function Home() {
                     <SectionTitle title="분야별 월별 추이" sub={`최근 ${data?.fetchedDays}일 기준`} />
                     <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
                       <ResponsiveContainer width="100%" height={270}>
-                        <LineChart margin={{ top: 5, right: 5, left: -10, bottom: 0 }}>
+                        <LineChart margin={{ top: 10, right: 5, left: -10, bottom: 5 }}>
                           <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" vertical={false} />
                           <XAxis dataKey="date" tickFormatter={formatMonth} tick={{ fontSize: 10, fill: '#a8a29e' }} axisLine={{ stroke: '#e7e5e4' }} tickLine={false} />
                           <YAxis tick={{ fontSize: 10, fill: '#a8a29e' }} axisLine={false} tickLine={false} tickFormatter={formatNumber} width={45} />
@@ -274,7 +274,7 @@ export default function Home() {
                 {/* Recent docs */}
                 <section>
                   <SectionTitle title="최근 공시" sub={`최근 ${Math.min(20, a.recentDocuments.length)}건`} />
-                  <div className="bg-white rounded-lg border border-stone-200 px-4 sm:px-5">
+                  <div className="bg-white rounded-lg border border-stone-200 px-4 sm:px-5 py-3 sm:py-4">
                     {a.recentDocuments.slice(0, 20).map((doc, i) => (
                       <DocumentItem key={`${doc.date}-${doc.n || i}`} doc={doc} />
                     ))}
@@ -392,7 +392,7 @@ export default function Home() {
                   <SectionTitle title="기관 분류별 비중" sub="전체 128,403건 기준" />
                   <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
                     <ResponsiveContainer width="100%" height={280}>
-                      <BarChart data={a.categoryDistribution} margin={{ top: 5, right: 5, left: -10, bottom: 0 }}>
+                      <BarChart data={a.categoryDistribution} margin={{ top: 5, right: 5, left: -10, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" vertical={false} />
                         <XAxis dataKey="category" tick={{ fontSize: 11, fill: '#57534e' }} axisLine={{ stroke: '#e7e5e4' }} tickLine={false} />
                         <YAxis tick={{ fontSize: 10, fill: '#a8a29e' }} axisLine={false} tickLine={false} tickFormatter={formatNumber} width={45} />
@@ -466,7 +466,7 @@ function TopInstitutionTrendChart({ documents, topInstitutions }: { documents: G
 
   return (
     <ResponsiveContainer width="100%" height={280}>
-      <AreaChart data={seriesData} margin={{ top: 5, right: 5, left: -10, bottom: 0 }}>
+      <AreaChart data={seriesData} margin={{ top: 10, right: 5, left: -10, bottom: 5 }}>
         <defs>
           {topInstitutions.map((_, i) => (
             <linearGradient key={i} id={`instGrad${i}`} x1="0" y1="0" x2="0" y2="1">
