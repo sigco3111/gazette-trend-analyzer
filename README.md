@@ -1,4 +1,4 @@
-# 🏛️ 관보 트렌드 분석기
+# 관보 트렌드 분석기
 
 > 대한민국 관보 공시 데이터를 시각화하여 정책 흐름을 분석하는 대시보드
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 📋 개요
+## 개요
 
 행정안전부 전자관보의 공시 데이터를 수집하여 월별 추이, 분야별 분포, 핵심 키워드, 기관별 순위 등을 인터랙티브 차트로 제공합니다. 원본 데이터는 [ai-readable-gazette-kr](https://hosungseo.github.io/ai-readable-gazette-kr/) (opendataloader OCR 기반, CC0)를 활용합니다.
 
@@ -29,27 +29,27 @@
 
 ---
 
-## 🛠 기술 스택
+## 기술 스택
 
 | 항목 | 기술 |
 |---|---|
 | **프레임워크** | Next.js 16 (App Router) |
 | **언어** | TypeScript 5 |
-| **스타일링** | Tailwind CSS v4 |
+| **스타일링** | Tailwind CSS v4 + CSS 커스텀 속성 Design System |
 | **차트** | Recharts 3 (AreaChart, BarChart, LineChart) |
 | **배포** | Vercel |
 | **데이터소스** | [ai-readable-gazette-kr](https://hosungseo.github.io/ai-readable-gazette-kr/) static JSON |
 
 ---
 
-## 📁 프로젝트 구조
+## 프로젝트 구조
 
 ```
 src/
 ├── app/
-│   ├── globals.css          # Tailwind 임포트, CSS 변수, 커스텀 스크롤바
-│   ├── layout.tsx           # 루트 레이아웃 (Noto Sans KR 폰트)
-│   ├── page.tsx             # 메인 대시보드 (전체 UI)
+│   ├── globals.css          # Design System 토큰, 컴포넌트 클래스, 스크롤바, print 미디어쿼리
+│   ├── layout.tsx           # 루트 레이아웃 (viewport, 메타데이터, 폰트 로드)
+│   ├── page.tsx             # 메인 대시보드 (헤더, 탭, 개요/키워드/기관 3섹션)
 │   └── api/analysis/
 │       └── route.ts         # 분석 API (GET /api/analysis?days=60)
 └── lib/
@@ -60,7 +60,7 @@ src/
 
 ---
 
-## 🚀 로컬 개발
+## 로컬 개발
 
 ### 사전 요구사항
 
@@ -70,14 +70,9 @@ src/
 ### 설치 및 실행
 
 ```bash
-# 클론
 git clone https://github.com/sigco3111/gazette-trend-analyzer.git
 cd gazette-trend-analyzer
-
-# 의존성 설치
 npm install
-
-# 개발 서버 실행
 npm run dev
 ```
 
@@ -92,7 +87,7 @@ npm start
 
 ---
 
-## 📡 API
+## API
 
 ### `GET /api/analysis`
 
@@ -119,12 +114,12 @@ npm start
       "mostActiveCategory": "중앙부처",
       "topInstitution": "국토교통부"
     },
-    "monthlyTrend": [{ "date": "2020-01", "count": 3200 }, ...],
-    "categoryDistribution": [{ "category": "중앙부처", "count": 108862 }, ...],
-    "categoryTrends": [{ "category": "중앙부처", "data": [...] }, ...],
-    "topInstitutions": [{ "name": "국토교통부", "count": 15405, "category": "중앙부처" }, ...],
-    "keywordTrends": [{ "keyword": "환경", "count": 42, "trend": "up", "recentCount": 28, "prevCount": 14 }, ...],
-    "recentDocuments": [{ "n": "1", "inst": "국토교통부", "title": "...", "date": "2026-04-19" }, ...]
+    "monthlyTrend": [{ "date": "2020-01", "count": 3200 }],
+    "categoryDistribution": [{ "category": "중앙부처", "count": 108862 }],
+    "categoryTrends": [{ "category": "중앙부처", "data": [] }],
+    "topInstitutions": [{ "name": "국토교통부", "count": 15405, "category": "중앙부처" }],
+    "keywordTrends": [{ "keyword": "환경", "count": 42, "trend": "up", "recentCount": 28, "prevCount": 14 }],
+    "recentDocuments": [{ "n": "1", "inst": "국토교통부", "title": "...", "date": "2026-04-19" }]
   },
   "fetchedDays": 60,
   "fetchedDocuments": 5408
@@ -135,7 +130,7 @@ npm start
 
 ---
 
-## 📊 데이터 소스
+## 데이터 소스
 
 데이터는 [ai-readable-gazette-kr](https://hosungseo.github.io/ai-readable-gazette-kr/)의 정적 JSON 파일에서 가져옵니다.
 
@@ -158,15 +153,49 @@ https://hosungseo.github.io/ai-readable-gazette-kr/data/
 
 ---
 
-## 🎨 디자인 철학
+## 디자인 철학
 
-- **에디토리얼 스타일**: AI 느낌을 배제하고 저널/문서 스타일의 깔끔한 디자인
-- **Stone 색상 팔레트**: `stone-50` ~ `stone-900` 기반, 액센트 컬러로 `amber-800`
-- **반응형**: 모바일(`sm:`) / 태블릿(`md:`) / 데스크톱(`lg:`) 브레이크포인트 지원
-- **한국어 최적화**: Noto Sans KR, Apple SD Gothic Neo 폰트 체인
+에디토리얼 / 저널 스타일 기반의 모바일 우선 디자인입니다. AI 특유의 그라데이션, 글로우, 다크모달 등을 의도적으로 배제했습니다.
+
+### Design System
+
+CSS 커스텀 속성 기반 토큰 체계로 일관된 시각 언어를 유지합니다:
+
+| 레이어 | 변수 | 용도 |
+|---|---|---|
+| Surface | `--color-surface`, `--surface-raised`, `--surface-sunken` | 배경 3단계 |
+| Ink | `--color-ink`, `--ink-secondary`, `--ink-muted` | 텍스트 명암 3단계 |
+| Accent | `--color-accent`, `--accent-soft` | 포인트 컬러 (warm orange) |
+| Semantic | `--color-positive`, `--negative` | 추세 배지 (green/red) |
+
+### 컴포넌트 클래스
+
+| 클래스 | 설명 |
+|---|---|
+| `.card` / `.card-body` | 카드 컨테이너, 반응형 패딩 |
+| `.stat-card` | 통계 카드, 호버 보더 효과 |
+| `.data-table` | 테이블, sticky header, 행 호버 |
+| `.badge-positive` / `-negative` / `-neutral` / `-tag` | 시맨틱 배지 |
+| `.tab-item` / `.tab-item.active` | 탭 네비게이션, 언더라인 애니메이션 |
+| `.skeleton` | shimmer 로딩 애니메이션 |
+| `.chart-tooltip` | 차트 툴팁 스타일 |
+
+### 반응형
+
+모바일 우선으로 설계했습니다. 3개 브레이크포인트 지원:
+
+- **모바일**: 기본 (375px+)
+- **태블릿**: `sm:` (640px+)
+- **데스크톱**: `lg:` (1024px+)
+
+iOS safe-area, `-webkit-tap-highlight-color`, print 미디어쿼리도 대응합니다.
+
+### 타이포그래피
+
+Noto Sans KR (본문) / Noto Serif KR (장식) / JetBrains Mono (수치) 3종 폰트 체인. 캡션 11px / 바디 14px / 헤딩 16px 3단계 타입 스케일을 사용합니다.
 
 ---
 
-## 📝 라이선스
+## 라이선스
 
 MIT
