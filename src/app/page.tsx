@@ -173,7 +173,7 @@ export default function Home() {
         )}
 
         {a && !loading && (
-          <div className="space-y-12 sm:space-y-16">
+          <div className="space-y-16 sm:space-y-20">
 
             {/* ═══ OVERVIEW ═══ */}
             {tab === 'overview' && (
