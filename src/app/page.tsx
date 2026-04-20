@@ -66,20 +66,20 @@ function TrendBadge({ trend }: { trend: 'up' | 'down' | 'stable' }) {
 
 function SectionTitle({ title, sub }: { title: string; sub?: string }) {
   return (
-    <div className="mb-4 sm:mb-5">
-      <h2 className="text-base sm:text-lg font-semibold text-stone-900">{title}</h2>
-      {sub && <p className="text-xs text-stone-500 mt-1">{sub}</p>}
+    <div className="mb-5 sm:mb-6">
+      <h2 className="text-base sm:text-lg font-semibold text-stone-900 leading-relaxed">{title}</h2>
+      {sub && <p className="text-xs text-stone-500 mt-1.5 leading-relaxed">{sub}</p>}
     </div>
   );
 }
 
 function DocumentItem({ doc }: { doc: GazetteDocument }) {
   return (
-    <div className="flex gap-2 sm:gap-3 py-2.5 border-b border-stone-100 last:border-b-0">
+    <div className="flex gap-2 sm:gap-3 py-3.5 border-b border-stone-100 last:border-b-0">
       <span className="text-[11px] text-stone-400 font-mono whitespace-nowrap pt-0.5">{formatDate(doc.date)}</span>
       <div className="flex-1 min-w-0">
-        <div className="text-sm text-stone-800 leading-snug line-clamp-2 sm:line-clamp-1">{doc.title}</div>
-        <div className="text-[11px] text-stone-400 mt-0.5">{doc.inst}</div>
+        <div className="text-sm text-stone-800 leading-relaxed line-clamp-2 sm:line-clamp-1">{doc.title}</div>
+        <div className="text-[11px] text-stone-400 mt-1">{doc.inst}</div>
       </div>
     </div>
   );
@@ -121,7 +121,7 @@ export default function Home() {
 
       {/* Header */}
       <header className="bg-white border-b border-stone-200">
-        <div className="container-main py-4 sm:py-5">
+        <div className="container-main py-5 sm:py-6">
           <div className="flex items-end justify-between gap-4">
             <div className="min-w-0">
               <div className="flex items-center gap-2.5 mb-1">
@@ -160,7 +160,7 @@ export default function Home() {
       </nav>
 
       {/* Content */}
-      <main className="container-main py-6 sm:py-8">
+      <main className="container-main py-10 sm:py-14">
         {loading && <Skeleton />}
 
         {error && (
@@ -173,41 +173,41 @@ export default function Home() {
         )}
 
         {a && !loading && (
-          <div className="space-y-8 sm:space-y-10">
+          <div className="space-y-12 sm:space-y-16">
 
             {/* ═══ OVERVIEW ═══ */}
             {tab === 'overview' && (
               <>
                 {/* Stats */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                  <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-4">
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-stone-400 mb-1">분석 문서</div>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                  <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-5">
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-stone-400 mb-1.5">분석 문서</div>
                     <div className="text-lg sm:text-xl font-semibold font-mono">{a.stats.totalDocuments.toLocaleString()}</div>
-                    <div className="text-[11px] text-stone-400 mt-0.5">최근 {data?.fetchedDays}일</div>
+                    <div className="text-[11px] text-stone-400 mt-1">최근 {data?.fetchedDays}일</div>
                   </div>
-                  <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-4">
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-stone-400 mb-1">일평균 공시</div>
+                  <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-5">
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-stone-400 mb-1.5">일평균 공시</div>
                     <div className="text-lg sm:text-xl font-semibold font-mono text-amber-800">{a.stats.avgPerDay.toLocaleString()}</div>
-                    <div className="text-[11px] text-stone-400 mt-0.5">건/일</div>
+                    <div className="text-[11px] text-stone-400 mt-1">건/일</div>
                   </div>
-                  <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-4">
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-stone-400 mb-1">가장 활발한 분야</div>
+                  <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-5">
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-stone-400 mb-1.5">가장 활발한 분야</div>
                     <div className="text-lg sm:text-xl font-semibold truncate">{a.stats.mostActiveCategory}</div>
-                    <div className="text-[11px] text-stone-400 mt-0.5">{a.categoryDistribution[0]?.count?.toLocaleString()}건</div>
+                    <div className="text-[11px] text-stone-400 mt-1">{a.categoryDistribution[0]?.count?.toLocaleString()}건</div>
                   </div>
-                  <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-4">
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-stone-400 mb-1">최다 공시 기관</div>
+                  <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-5">
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-stone-400 mb-1.5">최다 공시 기관</div>
                     <div className="text-lg sm:text-xl font-semibold text-blue-900 truncate">{a.stats.topInstitution}</div>
-                    <div className="text-[11px] text-stone-400 mt-0.5">{a.topInstitutions[0]?.count?.toLocaleString()}건</div>
+                    <div className="text-[11px] text-stone-400 mt-1">{a.topInstitutions[0]?.count?.toLocaleString()}건</div>
                   </div>
                 </div>
 
                 {/* Monthly Trend */}
                 <section>
                   <SectionTitle title="월별 공시 추이" sub="2020년 ~ 2026년 전체 관보 발행 추이" />
-                  <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-5">
+                  <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
                     <div className="min-w-0">
-                      <ResponsiveContainer width="100%" height={260} className="min-w-0">
+                      <ResponsiveContainer width="100%" height={280} className="min-w-0">
                         <AreaChart data={a.monthlyTrend} margin={{ top: 5, right: 5, left: -10, bottom: 0 }}>
                           <defs>
                             <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
@@ -227,11 +227,11 @@ export default function Home() {
                 </section>
 
                 {/* Two column */}
-                <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
                   <section>
                     <SectionTitle title="분야별 분포" sub="기관 분류 기준 전체 공시 비중" />
-                    <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-5">
-                      <ResponsiveContainer width="100%" height={250}>
+                    <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
+                      <ResponsiveContainer width="100%" height={270}>
                         <BarChart data={a.categoryDistribution} layout="vertical" margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                           <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" horizontal={false} />
                           <XAxis type="number" tick={{ fontSize: 10, fill: '#a8a29e' }} axisLine={false} tickLine={false} tickFormatter={formatNumber} />
@@ -247,8 +247,8 @@ export default function Home() {
 
                   <section>
                     <SectionTitle title="분야별 월별 추이" sub={`최근 ${data?.fetchedDays}일 기준`} />
-                    <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-5">
-                      <ResponsiveContainer width="100%" height={250}>
+                    <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
+                      <ResponsiveContainer width="100%" height={270}>
                         <LineChart margin={{ top: 5, right: 5, left: -10, bottom: 0 }}>
                           <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" vertical={false} />
                           <XAxis dataKey="date" tickFormatter={formatMonth} tick={{ fontSize: 10, fill: '#a8a29e' }} axisLine={{ stroke: '#e7e5e4' }} tickLine={false} />
@@ -260,7 +260,7 @@ export default function Home() {
                           ))}
                         </LineChart>
                       </ResponsiveContainer>
-                      <div className="flex flex-wrap gap-x-3 sm:gap-x-4 gap-y-1 mt-2">
+                      <div className="flex flex-wrap gap-x-4 sm:gap-x-5 gap-y-1.5 mt-3">
                         {a.categoryTrends.slice(0, 5).map((ct, i) => (
                           <div key={ct.category} className="flex items-center gap-1.5 text-[11px] text-stone-500">
                             <div className="w-3 h-0.5 rounded shrink-0" style={{ background: COLORS[i] }} /> {ct.category}
@@ -274,7 +274,7 @@ export default function Home() {
                 {/* Recent docs */}
                 <section>
                   <SectionTitle title="최근 공시" sub={`최근 ${Math.min(20, a.recentDocuments.length)}건`} />
-                  <div className="bg-white rounded-lg border border-stone-200 px-3 sm:px-4">
+                  <div className="bg-white rounded-lg border border-stone-200 px-4 sm:px-5">
                     {a.recentDocuments.slice(0, 20).map((doc, i) => (
                       <DocumentItem key={`${doc.date}-${doc.n || i}`} doc={doc} />
                     ))}
@@ -293,30 +293,30 @@ export default function Home() {
                       <table className="w-full text-sm min-w-[480px]">
                         <thead>
                           <tr className="border-b border-stone-200 bg-stone-50/50">
-                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-10">#</th>
-                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5">키워드</th>
-                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-16">빈도</th>
-                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-14 hidden sm:table-cell">최근</th>
-                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-14 hidden sm:table-cell">이전</th>
-                            <th className="text-center text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-[72px]">추세</th>
+                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-10">#</th>
+                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3">키워드</th>
+                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-16">빈도</th>
+                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-14 hidden sm:table-cell">최근</th>
+                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-14 hidden sm:table-cell">이전</th>
+                            <th className="text-center text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-[72px]">추세</th>
                           </tr>
                         </thead>
                         <tbody>
                           {a.keywordTrends.map((kw, i) => (
                             <tr key={kw.keyword} className="border-b border-stone-50 hover:bg-stone-50/50">
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 font-mono text-stone-400 text-xs">{i + 1}</td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5">
-                                <div className="flex items-center gap-2 sm:gap-2.5">
-                                  <span className="font-medium text-stone-800 text-sm">{kw.keyword}</span>
+                              <td className="px-4 sm:px-5 py-3 font-mono text-stone-400 text-xs">{i + 1}</td>
+                              <td className="px-4 sm:px-5 py-3">
+                                <div className="flex items-center gap-2 sm:gap-3">
+                                  <span className="font-medium text-stone-800 text-sm leading-relaxed">{kw.keyword}</span>
                                   <div className="hidden md:block flex-1 max-w-[120px] h-1 bg-stone-100 rounded-full overflow-hidden">
                                     <div className="h-full bg-amber-700/60 rounded-full" style={{ width: `${(kw.count / a.keywordTrends[0].count) * 100}%` }} />
                                   </div>
                                 </div>
                               </td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 text-right font-mono text-stone-600 text-sm">{kw.count}</td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 text-right font-mono text-stone-500 text-sm hidden sm:table-cell">{kw.recentCount}</td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 text-right font-mono text-stone-400 text-sm hidden sm:table-cell">{kw.prevCount}</td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 text-center"><TrendBadge trend={kw.trend} /></td>
+                              <td className="px-4 sm:px-5 py-3 text-right font-mono text-stone-600 text-sm">{kw.count}</td>
+                              <td className="px-4 sm:px-5 py-3 text-right font-mono text-stone-500 text-sm hidden sm:table-cell">{kw.recentCount}</td>
+                              <td className="px-4 sm:px-5 py-3 text-right font-mono text-stone-400 text-sm hidden sm:table-cell">{kw.prevCount}</td>
+                              <td className="px-4 sm:px-5 py-3 text-center"><TrendBadge trend={kw.trend} /></td>
                             </tr>
                           ))}
                         </tbody>
@@ -327,8 +327,8 @@ export default function Home() {
 
                 <section>
                   <SectionTitle title="키워드 빈도 분포" sub="상위 20개 · 색상 = 추세" />
-                  <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-5">
-                    <ResponsiveContainer width="100%" height={360}>
+                  <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
+                    <ResponsiveContainer width="100%" height={380}>
                       <BarChart data={a.keywordTrends.slice(0, 20)} layout="vertical" margin={{ top: 0, right: 10, left: 5, bottom: 0 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" horizontal={false} />
                         <XAxis type="number" tick={{ fontSize: 10, fill: '#a8a29e' }} axisLine={false} tickLine={false} />
@@ -341,7 +341,7 @@ export default function Home() {
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
-                    <div className="flex gap-4 sm:gap-5 mt-3 text-[11px] text-stone-500">
+                    <div className="flex gap-5 sm:gap-6 mt-4 text-[11px] text-stone-500">
                       <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-green-700/70" /> 증가</span>
                       <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-red-700/70" /> 감소</span>
                       <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-stone-400/70" /> 유지</span>
@@ -361,23 +361,23 @@ export default function Home() {
                       <table className="w-full text-sm min-w-[500px]">
                         <thead>
                           <tr className="border-b border-stone-200 bg-stone-50/50">
-                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-10">#</th>
-                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5">기관명</th>
-                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-20">분류</th>
-                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-20">공시 건수</th>
-                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-3 sm:px-4 py-2.5 w-16 hidden sm:table-cell">비중</th>
+                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-10">#</th>
+                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3">기관명</th>
+                            <th className="text-left text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-20">분류</th>
+                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-20">공시 건수</th>
+                            <th className="text-right text-[10px] font-medium text-stone-400 uppercase tracking-wider px-4 sm:px-5 py-3 w-16 hidden sm:table-cell">비중</th>
                           </tr>
                         </thead>
                         <tbody>
                           {a.topInstitutions.map((inst, i) => (
                             <tr key={inst.name} className="border-b border-stone-50 hover:bg-stone-50/50">
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 font-mono text-stone-400 text-xs">{i + 1}</td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 font-medium text-stone-800 text-sm">{inst.name}</td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5">
-                                <span className="inline-block px-1.5 sm:px-2 py-0.5 rounded text-[11px] bg-stone-100 text-stone-600 whitespace-nowrap">{inst.category}</span>
+                              <td className="px-4 sm:px-5 py-3 font-mono text-stone-400 text-xs">{i + 1}</td>
+                              <td className="px-4 sm:px-5 py-3 font-medium text-stone-800 text-sm leading-relaxed">{inst.name}</td>
+                              <td className="px-4 sm:px-5 py-3">
+                                <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded text-[11px] bg-stone-100 text-stone-600 whitespace-nowrap">{inst.category}</span>
                               </td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 text-right font-mono text-stone-600 text-sm">{inst.count.toLocaleString()}</td>
-                              <td className="px-3 sm:px-4 py-2 sm:py-2.5 text-right hidden sm:table-cell">
+                              <td className="px-4 sm:px-5 py-3 text-right font-mono text-stone-600 text-sm">{inst.count.toLocaleString()}</td>
+                              <td className="px-4 sm:px-5 py-3 text-right hidden sm:table-cell">
                                 <span className="font-mono text-stone-400 text-xs">{((inst.count / data!.meta.totalDocs) * 100).toFixed(1)}%</span>
                               </td>
                             </tr>
@@ -390,8 +390,8 @@ export default function Home() {
 
                 <section>
                   <SectionTitle title="기관 분류별 비중" sub="전체 128,403건 기준" />
-                  <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-5">
-                    <ResponsiveContainer width="100%" height={260}>
+                  <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
+                    <ResponsiveContainer width="100%" height={280}>
                       <BarChart data={a.categoryDistribution} margin={{ top: 5, right: 5, left: -10, bottom: 0 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" vertical={false} />
                         <XAxis dataKey="category" tick={{ fontSize: 11, fill: '#57534e' }} axisLine={{ stroke: '#e7e5e4' }} tickLine={false} />
@@ -408,9 +408,9 @@ export default function Home() {
                 {/* Top 5 institutions trend */}
                 <section>
                   <SectionTitle title="주요 기관 공시 추이" sub={`최근 ${data?.fetchedDays}일 기준 TOP 5 기관`} />
-                  <div className="bg-white rounded-lg border border-stone-200 p-3 sm:p-5">
+                  <div className="bg-white rounded-lg border border-stone-200 p-4 sm:p-6">
                     <TopInstitutionTrendChart documents={a.recentDocuments} topInstitutions={a.topInstitutions.slice(0, 5)} />
-                    <div className="flex flex-wrap gap-x-3 sm:gap-x-4 gap-y-1 mt-2">
+                    <div className="flex flex-wrap gap-x-4 sm:gap-x-5 gap-y-1.5 mt-3">
                       {a.topInstitutions.slice(0, 5).map((inst, i) => (
                         <div key={inst.name} className="flex items-center gap-1.5 text-[11px] text-stone-500">
                           <div className="w-3 h-0.5 rounded shrink-0" style={{ background: COLORS[i] }} />
@@ -427,8 +427,8 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-stone-200 bg-white mt-8 sm:mt-12">
-        <div className="container-main py-5 sm:py-6 text-[11px] sm:text-xs text-stone-400">
+      <footer className="border-t border-stone-200 bg-white mt-12 sm:mt-16">
+        <div className="container-main py-6 sm:py-8 text-[11px] sm:text-xs text-stone-400">
           <div className="flex flex-col sm:flex-row justify-between gap-3">
             <div>
               <p>데이터: 행정안전부 전자관보 → opendataloader OCR → 사전 보정 코퍼스 (CC0)</p>
@@ -465,7 +465,7 @@ function TopInstitutionTrendChart({ documents, topInstitutions }: { documents: G
   });
 
   return (
-    <ResponsiveContainer width="100%" height={260}>
+    <ResponsiveContainer width="100%" height={280}>
       <AreaChart data={seriesData} margin={{ top: 5, right: 5, left: -10, bottom: 0 }}>
         <defs>
           {topInstitutions.map((_, i) => (

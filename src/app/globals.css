@@ -18,6 +18,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+  line-height: 1.7;
 }
 
 /* Layout container - explicit centering */
