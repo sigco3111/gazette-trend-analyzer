@@ -121,7 +121,7 @@ export default function Home() {
 
       {/* Header */}
       <header className="bg-white border-b border-stone-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
           <div className="flex items-end justify-between gap-4">
             <div className="min-w-0">
               <div className="flex items-center gap-2.5 mb-1">
@@ -143,7 +143,7 @@ export default function Home() {
 
       {/* Tabs */}
       <nav className="bg-white border-b border-stone-200 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex gap-1 overflow-x-auto -mb-px scrollbar-none">
             {([
               ['overview', '개요'],
@@ -160,7 +160,7 @@ export default function Home() {
       </nav>
 
       {/* Content */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {loading && <Skeleton />}
 
         {error && (
@@ -428,7 +428,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-stone-200 bg-white mt-8 sm:mt-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 text-[11px] sm:text-xs text-stone-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 text-[11px] sm:text-xs text-stone-400">
           <div className="flex flex-col sm:flex-row justify-between gap-3">
             <div>
               <p>데이터: 행정안전부 전자관보 → opendataloader OCR → 사전 보정 코퍼스 (CC0)</p>
