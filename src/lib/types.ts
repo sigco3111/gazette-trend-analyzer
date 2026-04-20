@@ -1,21 +1,31 @@
 export interface GazetteDocument {
-  id: string;
+  n: string;
+  inst: string;
   title: string;
-  publisher: string;
   date: string;
-  category?: string;
-}
-
-export interface DateGroupData {
-  date: string;
-  documents: GazetteDocument[];
+  file?: string;
+  raw?: string;
+  blob?: string;
 }
 
 export interface MetaData {
+  version: string;
   total_docs: number;
   date_range: [string, string];
-  categories: Record<string, { count: number; institutions: string[] }>;
-  heatmap: Record<string, number>;
+  date_count: number;
+  institution_count: number;
+  dates: { date: string; count: number }[];
+  institutions: { name: string; count: number; cat: string }[];
+  heatmap: { ym: string; count: number }[];
+  category_order: string[];
+  raw_base: string;
+  blob_base: string;
+  repo_url: string;
+}
+
+export interface DateGroupResponse {
+  date: string;
+  docs: GazetteDocument[];
 }
 
 export interface TrendDataPoint {
