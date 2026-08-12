@@ -4,7 +4,7 @@
 
 [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sigco3111/gazette-trend-analyzer)
 
-**라이브 데모:** [gazette-trend-analyzer.vercel.app](https://gazette-trend-analyzer.vercel.app)
+**라이브 데모:** [sigco3111.github.io/gazette-trend-analyzer](https://sigco3111.github.io/gazette-trend-analyzer)
 
 ---
 
