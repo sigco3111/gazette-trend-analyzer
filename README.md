@@ -2,9 +2,9 @@
 
 > 대한민국 관보 공시 데이터를 시각화하여 정책 흐름을 분석하는 대시보드
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)](https://sigco3111.github.io/gazette-trend-analyzer/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://gazette-trend-analyzer.vercel.app)
 
-**라이브 데모:** [sigco3111.github.io/gazette-trend-analyzer](https://sigco3111.github.io/gazette-trend-analyzer)
+**라이브 데모:** [gazette-trend-analyzer.vercel.app](https://gazette-trend-analyzer.vercel.app)
 
 ---
 
@@ -37,7 +37,7 @@
 | **언어** | TypeScript 5 |
 | **스타일링** | Tailwind CSS v4 + CSS 커스텀 속성 Design System |
 | **차트** | Recharts 3 (AreaChart, BarChart, LineChart) |
-| **배포** | GitHub Pages (Next.js `output: 'export'` 정적 호스팅 — 2026-08 Vercel에서 전환) |
+| **배포** | Vercel (production API route + Pages는 정적 export 폴백 — `/api/analysis`는 Vercel 전용, Pages 환경에서는 자동 비활성) |
 | **데이터소스** | [ai-readable-gazette-kr](https://hosungseo.github.io/ai-readable-gazette-kr/) static JSON |
 
 ---
@@ -89,7 +89,7 @@ npm start
 
 ## API
 
-> ℹ️ **호스팅 참고**: GitHub Pages 정적 export 배포에서는 API routes가 제외됩니다. 현재 Pages 라이브에서는 메인 페이지의 클라이언트 사이드 데이터 분석만 제공됩니다 (자체 호스팅/Vercel 배포 시 API routes 사용).
+> ℹ️ **호스팅 참고**: 라이브는 Vercel (`gazette-trend-analyzer.vercel.app`) — `/api/analysis` 정상 작동. GitHub Pages 정적 export 폴백에서는 API routes가 제외되어 데이터 로딩이 비활성화됩니다 (정적 shell만 서빙).
 
 ### `GET /api/analysis`
 
