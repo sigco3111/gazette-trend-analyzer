@@ -2,7 +2,7 @@
 
 > 대한민국 관보 공시 데이터를 시각화하여 정책 흐름을 분석하는 대시보드
 
-[![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sigco3111/gazette-trend-analyzer)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)](https://sigco3111.github.io/gazette-trend-analyzer/)
 
 **라이브 데모:** [sigco3111.github.io/gazette-trend-analyzer](https://sigco3111.github.io/gazette-trend-analyzer)
 
@@ -37,7 +37,7 @@
 | **언어** | TypeScript 5 |
 | **스타일링** | Tailwind CSS v4 + CSS 커스텀 속성 Design System |
 | **차트** | Recharts 3 (AreaChart, BarChart, LineChart) |
-| **배포** | Vercel |
+| **배포** | GitHub Pages (Next.js `output: 'export'` 정적 호스팅 — 2026-08 Vercel에서 전환) |
 | **데이터소스** | [ai-readable-gazette-kr](https://hosungseo.github.io/ai-readable-gazette-kr/) static JSON |
 
 ---
@@ -51,7 +51,7 @@ src/
 │   ├── layout.tsx           # 루트 레이아웃 (viewport, 메타데이터, 폰트 로드)
 │   ├── page.tsx             # 메인 대시보드 (헤더, 탭, 개요/키워드/기관 3섹션)
 │   └── api/analysis/
-│       └── route.ts         # 분석 API (GET /api/analysis?days=60)
+│       └── route.ts         # 분석 API (GET /api/analysis?days=60) — Pages 정적 export로 배포 시 라이브에서는 미사용
 └── lib/
     ├── types.ts             # TypeScript 인터페이스 정의
     ├── api.ts               # 외부 데이터 페칭 (meta.json + 날짜별 JSON)
@@ -88,6 +88,8 @@ npm start
 ---
 
 ## API
+
+> ℹ️ **호스팅 참고**: GitHub Pages 정적 export 배포에서는 API routes가 제외됩니다. 현재 Pages 라이브에서는 메인 페이지의 클라이언트 사이드 데이터 분석만 제공됩니다 (자체 호스팅/Vercel 배포 시 API routes 사용).
 
 ### `GET /api/analysis`
 
