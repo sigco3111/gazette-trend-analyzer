@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from 'next/server';
 import { fetchMeta, fetchRecentDocuments } from '@/lib/api';
 import { analyzeTrend } from '@/lib/analyzer';
